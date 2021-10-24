@@ -2,6 +2,7 @@
 #Script adds the server to an update schedule of your choice, adds a "managed by" entry in AD, and also adds server to the
 #shared connections list in Windows Admin Center
 #added to Git Repo
+#some more changes
 
 
 #add to update schedule
