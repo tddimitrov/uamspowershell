@@ -21,19 +21,19 @@ $group = Read-Host -Prompt "`n Please choose a production group (1-4):
 3. Production 3 - 4th Saturday
 4. Production 4 - Last Wednesday"
 
-if ($group -eq 1) { Add-ADGroupMember -Identity $group1 -Members $computername'$' && Write-Host "$computername has been added to Production 1 `n"} 
+if ($group -eq 1) { Add-ADGroupMember -Identity $group1 -Members $computername'$' && Write-Host "$computername has been added to Production 1 `n" } 
 
-    elseif ($group -eq 2) { Add-ADGroupMember -Identity $group2 -Members $computername'$' && Write-Output "$computername has been added to Production 2 `n"}
+elseif ($group -eq 2) { Add-ADGroupMember -Identity $group2 -Members $computername'$' && Write-Output "$computername has been added to Production 2 `n" }
 
-    elseif ($group -eq 3) { Add-ADGroupMember -Identity $group3 -Members $computername'$' && Write-Output "$computername has been added to Production 3 `n"}
+elseif ($group -eq 3) { Add-ADGroupMember -Identity $group3 -Members $computername'$' && Write-Output "$computername has been added to Production 3 `n" }
     
-    elseif ($group -eq 4) { Add-ADGroupMember -Identity $group4 -Members $computername'$' && Write-Output "$computername has been added to Production 4 `n"}
+elseif ($group -eq 4) { Add-ADGroupMember -Identity $group4 -Members $computername'$' && Write-Output "$computername has been added to Production 4 `n" }
 
 #add managed by
 Write-Host "Enter Server POC:`n"
 $serverPOCFirstName = Read-Host -Prompt "First Name"
 $serverPOCLastName = Read-Host -Prompt "Last Name"
-$serverPOC = Get-ADUser -Filter {(givenname -eq $serverPOCFirstName) -and (sn -eq $serverPOCLastName) -and (samaccountname -notlike '*.adm') }
+$serverPOC = Get-ADUser -Filter { (givenname -eq $serverPOCFirstName) -and (sn -eq $serverPOCLastName) -and (samaccountname -notlike '*.adm') }
 Set-ADComputer $computername -ManagedBy $serverPOC && Write-Host `n $computername "is now managed by" $serverPOC
 
 #add server to WAC - use implicit remoting method
@@ -41,11 +41,11 @@ Set-ADComputer $computername -ManagedBy $serverPOC && Write-Host `n $computernam
 #documentation on add-wacconnection - https://github.com/rchaganti/PSWindowsAdminCenter/blob/master/docs/Add-WacConnection.md
 
 $s = New-PSSession -ComputerName wac
-Invoke-Command -Session $s -ScriptBlock {$ConnectionName = $ConnectionName}
-Invoke-Command -Session $s -ScriptBlock {"$env:ProgramFiles\windows admin center\PowerShell\Modules\ConnectionTools"}
-Invoke-Command -Session $s -ScriptBlock {Get-Command -Module 'PSWindowsAdminCenter' | Select-Object -Property Name, CommandType | Out-Null}
-Invoke-Command -session $s -scriptblock {$ConnectionName = Read-Host "Enter FQDN ofserver to be added to Windows Admin Center"}
-Invoke-Command -session $s -ScriptBlock {Add-WacConnection -GatewayEndpoint 'https://wac.ad.uams.edu' -ConnectionName $ConnectionName -ConnectionType 'msft.sme.connection-type.server' -SharedConnection}
+Invoke-Command -Session $s -ScriptBlock { $ConnectionName = $ConnectionName }
+Invoke-Command -Session $s -ScriptBlock { "$env:ProgramFiles\windows admin center\PowerShell\Modules\ConnectionTools" }
+Invoke-Command -Session $s -ScriptBlock { Get-Command -Module 'PSWindowsAdminCenter' | Select-Object -Property Name, CommandType | Out-Null }
+Invoke-Command -Session $s -ScriptBlock { $ConnectionName = Read-Host "Enter FQDN ofserver to be added to Windows Admin Center" }
+Invoke-Command -Session $s -ScriptBlock { Add-WacConnection -GatewayEndpoint 'https://wac.ad.uams.edu' -ConnectionName $ConnectionName -ConnectionType 'msft.sme.connection-type.server' -SharedConnection }
 
 
 
