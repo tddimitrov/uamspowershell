@@ -1,4 +1,4 @@
-#Use "Run Selection" to pick which code to execute.
+#Use hilight each section ("traditional" or ANR serach) and then use "Run Selection" to execute.
 
 #"Traditional" search by part of displayname
 # output will be more verbose  and you can see more AD attributes
