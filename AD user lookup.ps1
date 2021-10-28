@@ -9,6 +9,6 @@ Format-Table -AutoSize
 
 
 #Search based on ANR - ambiguous name resolution
-#Quicker and more efficient searh but returns fewer attributes than the first one
+#Quicker and more efficient search but returns fewer attributes than the first one
 $partofname = Read-Host "enter name"
 Get-ADUser -LDAPFilter "(anr=$partofname)" | Select-Object name, samaccountname, userprincipalname | Sort-Object Name
