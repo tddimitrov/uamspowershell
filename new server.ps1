@@ -1,10 +1,7 @@
 #Run the script under your .adm account
 #Script adds the server to an update schedule of your choice, adds a "managed by" entry in AD, and also adds server to the
 #shared connections list in Windows Admin Center
-#added to Git Repo
-#some more changes
-#yet more changes
-#more
+#testing if this change will be pushed from Git to AzureDevOps
 
 
 #add to update schedule
@@ -29,7 +26,7 @@ elseif ($group -eq 3) { Add-ADGroupMember -Identity $group3 -Members $computerna
     
 elseif ($group -eq 4) { Add-ADGroupMember -Identity $group4 -Members $computername'$' && Write-Output "$computername has been added to Production 4 `n" }
 
-#add managed by
+#add managed byKT
 Write-Host "Enter Server POC:`n"
 $serverPOCFirstName = Read-Host -Prompt "First Name"
 $serverPOCLastName = Read-Host -Prompt "Last Name"
