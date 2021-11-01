@@ -1,6 +1,6 @@
 #Grab servers from a list, iterate and test connectivity, outputing the results to a csv file
 #Obviously change location and name of source and output files to suit your needs.
-#testing sync with repo...
+#testing sync with repo......
 
 $servers = Get-Content C:\Users\dimitrovtheodore.adm\Desktop\2008servers.txt
 
